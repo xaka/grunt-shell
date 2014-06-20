@@ -4,7 +4,6 @@ var chalk = require('chalk');
 
 module.exports = function (grunt) {
 	grunt.registerMultiTask('shell', 'Run shell commands', function () {
-		var cb = this.async();
 		var options = this.options({
 			stdout: true,
 			stderr: true,
@@ -12,6 +11,7 @@ module.exports = function (grunt) {
 			failOnError: true
 		});
 		var cmd = this.data.command;
+		var cb = options.async ? function () {} : this.async();
 
 		if (cmd === undefined) {
 			throw new Error('`command` required');
@@ -54,6 +54,12 @@ module.exports = function (grunt) {
 			process.stdin.resume();
 			process.stdin.setEncoding('utf8');
 			process.stdin.pipe(cp.stdin);
+		}
+
+		if (options.async) {
+		    process.on('exit', function () {
+				cp.kill();
+		    });
 		}
 	});
 };

@@ -192,7 +192,7 @@ grunt.initConfig({
 
 #### command
 
-**Required**  
+**Required**
 Type: `string`, `function`
 
 The command you want to run or a function which returns it. Supports underscore templates.
@@ -201,9 +201,18 @@ The command you want to run or a function which returns it. Supports underscore 
 ### Options
 
 
+#### async
+
+Type: `boolean`
+Default: `false`
+
+Runs command in background without blocking grunt by waiting for command
+to finish. When grunt finishes, the command will be killed.
+
+
 #### stdout
 
-Type: `boolean`  
+Type: `boolean`
 Default: `true`
 
 Show stdout in the Terminal.
@@ -211,7 +220,7 @@ Show stdout in the Terminal.
 
 #### stderr
 
-Type: `boolean`  
+Type: `boolean`
 Default: `true`
 
 Show stderr in the Terminal.
@@ -219,7 +228,7 @@ Show stderr in the Terminal.
 
 #### stdin
 
-Type: `boolean`  
+Type: `boolean`
 Default: `true`
 
 Forward the terminal's stdin to the command.
@@ -227,7 +236,7 @@ Forward the terminal's stdin to the command.
 
 #### failOnError
 
-Type: `boolean`  
+Type: `boolean`
 Default: `true`
 
 Fail task if it encounters an error. Does not apply if you specify a `callback`.
@@ -235,7 +244,7 @@ Fail task if it encounters an error. Does not apply if you specify a `callback`.
 
 #### callback(err, stdout, stderr, cb)
 
-Type: `function`  
+Type: `function`
 Default: `function () {}`
 
 Lets you override the default callback with your own.
